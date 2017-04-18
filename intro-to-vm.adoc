@@ -1,0 +1,75 @@
+== Introduction to the OpenShift All-In-One VM
+
+Before we get started, it is assumed that you have already installed the OpenShift All-In-One VM and command line tools.
+
+The all-in-one VM (A1VM) is intended for a developer or sysadmin to have a quick and easy way to use OpenShift (which also is a great way to use Kubernetes). The focus of the A1VM is:
+
+1. Works right out of the box
+2. Relaxes security restrictions so you can run Docker images that run as root
+3. Give developers a means to carry out rapid development without needing an external server
+4. Give the OpenShift evangelists an easy way to run workshops - like this one
+
+WARNING: We wanted to allow developers to use any Docker image they want, which required us turning off some security in OpenShift.
+By default, OpenShift will not allow a container to run as root or even a non-random container assigned userid. Most Docker images in
+Dockerhub do not follow this best practice and instead run as root. Further multiplying this error, a large majority of Dockerhub images
+are not patched for well known vulnerabilities. Therefore, please use images from Dockerhub with caution. We think some of the risk is
+mitigated because you are running OpenShift in a VM, but still - be careful which Docker images you run.
+
+[TIP]
+====
+If you want to run the VM with same permissions as in the Enterprise or Online
+products you can do the following command inside the Vagrant machine:
+
+[source, bash]
+----
+$ oc login #username admin #password any password you want
+$ oc adm policy remove-scc-from-group anyuid system:authenticated
+----
+This commands removes the ability to for any OpenShift UID from running as system:authenticated and resets it to the default which is only allow that permission for random UID.
+
+Your VM now behaves like Online or Enterprise in terms of not letting Docker images run as root user.
+====
+
+=== The command line
+And with that we begin the journey. Our first step will be to login to the VM both from the command line (cli) and the web console (console). Open a terminal and type in:
+
+[source, bash]
+----
+> oc login https://10.2.2.2:8443
+
+# on windows or if you get a cert. error do the following
+
+> oc login https://10.2.2.2:8443 --insecure-skip-tls-verify=true
+
+
+----
+
+You should be prompted for a username and passsword. For ease of use, in the workshop, we will use username _user_ password _password_. You can actually use any password you want with the admin or user account. You can also use any username and password you want. The username will "matter" in that any project created in that username can only be seen by that username - but these are not secure accounts. Remember - the focus of this VM is ease of use.
+
+After logging in you should see the following message
+
+[source, bash]
+----
+
+Login successful.
+
+You don't have any projects. You can try to create a new project, by running
+
+    oc new-project <projectname>
+
+----
+
+
+
+=== Web Console
+
+Now in your browser go to https://10.2.2.2:8443 . You will get a warning about the certificate and this is to be expected since we are using self-signed certificates throughout the installation - so we will need to work around this. You will then get to the login screen. Again use the _user_ and _password_ username password combination and you should see something that looks like this (except for the red box):
+
+image::common/1_login.png[]
+
+Now go ahead and login as the account we will use for most of the remaining exercises. In the username and password prompt go ahead and type _user_ and _user_ in both fields (again the password can really be anything you want).
+
+
+And with that we are ready to get down to business. Let's start by just using a plain Docker container image from Docker hub!
+
+<<<

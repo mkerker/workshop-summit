@@ -1,0 +1,13 @@
+modules:
+  intro-to-os:
+    name: Brief Introduction to OpenShift
+  intro-to-vm:
+    name: Introduction to the OpenShift All-In-One VM
+  running-an-image:
+    name: Running a Docker Container Image
+  templates:
+    name: Templates and OpenShift/Kubernetes Declarative Syntax
+  adding-database:
+    name: Adding a Database
+  adding-code:
+    name: Beginning Your Application
