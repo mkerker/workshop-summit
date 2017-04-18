@@ -1,13 +1,17 @@
 modules:
   intro-to-os:
     name: Brief Introduction to OpenShift
-  intro-to-vm:
-    name: Introduction to the OpenShift All-In-One VM
+  intro-to-environment:
+    name: Logging in to the Class Environment
   running-an-image:
     name: Running a Docker Container Image
-  templates:
-    name: Templates and OpenShift/Kubernetes Declarative Syntax
+  health-checks:
+    name: Creating Health Checks on Containers
   adding-database:
     name: Adding a Database
-  adding-code:
-    name: Beginning Your Application
+  addcode-application:
+    name: Adding Code to Your Application
+  blue-green:
+    name: Advanced Deployments
+  templates:
+    name: Templates and OpenShift/Kubernetes Declarative Syntax
