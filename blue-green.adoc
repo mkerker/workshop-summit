@@ -1,3 +1,18 @@
-Show how to do a blue green with swapping services in a route
+== Doing Advanced Deployments (A/B or Blue Green Deployments)
 
-Maybe canary with multiple services on a route
+One of the great parts about having a platform that automates your deployments is you can now easily do advanced deployments.
+
+Blue/Green deployments and A/B are very similar and very helpful as you roll out new code. With a blue/green deployment, the production deployments is called blue. Your new deployment(and code) is called green. While blue is up and running, you spin up your entire green deployment, then we you are ready you cut over from blue to your green deployment. In A/B, the A stands for your
+production code and B stands for some code you want to test with live production users. So while A is running you start sending some of your traffic to B, test, and then turn off the traffic to B.
+
+=== Changing our original code
+
+So while "hello OpenShift Ninja Without DB" is awesome, let's make it more awesome. Let's test how people like to be referred to when starting an application.
+
+Using your fork of the repository, either edit the code on your local machine. In _app.py_ change line 12 to
+
+"Hello proper Person"
+
+If you are working on your own machine commit and push the changes, if you are on Github you just need to save the changes.
+
+=== Making the B/Green service
