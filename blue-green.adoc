@@ -16,3 +16,5 @@ Using your fork of the repository, either edit the code on your local machine. I
 If you are working on your own machine commit and push the changes, if you are on Github you just need to save the changes.
 
 === Making the B/Green service
+
+oc new-app python:3.5~https://github.com/thesteve0/v3simple-spatial.git --env PG_DATABASE=userdb,PG_USER=postgres,PG_PASSWORD=password --name=green
