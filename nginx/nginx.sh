@@ -5,7 +5,7 @@ worker_processes  10;
 worker_rlimit_nofile 10240;
 pid /nginx/nginx.pid;
 daemon off;
-error_log /nginx/error.log;
+error_log /nginx/logs/error.log;
 
 events {
     worker_connections 1024;
@@ -28,13 +28,10 @@ http {
     scgi_temp_path /nginx/scgi_temp;
     server {
         listen 8080;
-        access_log /nginx/http.access.log;
+        access_log /nginx/logs/http.access.log;
         root /nginx/html;
     }
 }
 EOF
-
-mkdir -p /nginx/html
-echo "Hello on OpenShift" > /nginx/html/index.html
 
 nginx -c /nginx/nginx.conf -p /nginx

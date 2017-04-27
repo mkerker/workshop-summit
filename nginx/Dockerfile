@@ -11,4 +11,7 @@ RUN chmod 777 -R /nginx
 EXPOSE 8080
 WORKDIR /nginx
 
+VOLUME ["/nginx/html"]
+VOLUME ["/nginx/logs"]
+
 CMD ["./nginx.sh"]

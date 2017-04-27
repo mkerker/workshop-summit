@@ -123,7 +123,7 @@ the path):
 
 [source, bash]
 ----
-echo  "hello world" > /opt/rh/nginx16/root/usr/share/nginx/html/index.html
+echo  "hello world" > html/index.html
 ----
 
 Now if you go back and reload the URL you will see "hello world" in your
