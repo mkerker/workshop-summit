@@ -1,7 +1,5 @@
 == Running a Docker Container Image
 
-=== NGINX IMAGE DOES NOT WORK WITHOUT ROOT
-
 Let's start by just running an NGINX server in OpenShift. By way of doing this
 I will also introduce you to many of the major pieces in an OpenShift project.
 
@@ -45,9 +43,11 @@ many images on DockerHub is that they run as _root_ user when it is not even
 required. By default, an OpenShift cluster will not let you run images as
 _root_.
 
-Let's go ahead and start with an NGINX image put out by the
-https://hub.docker.com/r/centos/nginx-16-centos7/[CentOS group]. Bringing this
-into our OpenShift environment is as simple as
+We wanted to use the NGINX image put out by the
+https://hub.docker.com/r/centos/nginx-16-centos7/[CentOS group], but it requires
+the root priviledge which is not allowed on our cluster, so we build custom
+https://hub.docker.com/r/mjelen/nginx-summit/[image] just for this class.
+Bringing this into our OpenShift environment is as simple as
 
 [source, bash]
 ----
