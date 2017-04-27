@@ -17,4 +17,38 @@ If you are working on your own machine commit and push the changes, if you are o
 
 === Making the B/Green service
 
+This part is easy, you've already done this once before - let's do it again but just give it a different name than before:
+[source, bash]
+----
+
 oc new-app python:3.5~https://github.com/thesteve0/v3simple-spatial.git --env PG_DATABASE=userdb,PG_USER=postgres,PG_PASSWORD=password --name=green
+
+----
+
+The --name is the flag that creates a new deployment and service with the assigned name.
+
+In your web interface you will see the new deployment and service. Please expose the _green_ service as another route and see your wonderful changes.
+
+image::images/common/SOMETHING WITH THE 2 Routes
+
+=== Directing Traffic
+
+Now it's time to get traffic going to both our services at once. We are going to assume the URL for the spatial-service, that we created in the previous exercise, is the production URL. Go to the left navigation bar, choose Applications, and then Routes. In the list of routes, pick the v3simple-spatial route.
+
+On the page for the right, click on the button on the top right and chose edit.
+
+Your screen should now look like this:
+
+image::images/common/EDIT SCREEN FOR ROUTES
+
+If you look down the screen a bit you will see a link that says _add another service_, go ahead and click it, and then from the dropdown pick the green service. Make sure the percentage sliders are set to equal numbers as in the screen below.
+
+image::images/common/SCREEN WITH FINAL EDIT
+
+=== Testing Our Services
+
+Now you can open an incognito or private browsing session and go to the URL for the v3simple-spatial ( it may take one or two different private browsers) and you should see your new web page.
+
+In class we can talk about how this would be A/B versus Blue/Green.
+
+If you want to remove the last service you can just go back to the route, click on edit again, and then click on the link that says remove the service. 
