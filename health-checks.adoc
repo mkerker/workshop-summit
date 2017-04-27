@@ -52,7 +52,7 @@ On the landing page you see a nice description for each of the probe types.
 Let's go ahead and click on the link for "Add Liveness Probe". This will add a
 form to the page that allows us to define a liveness probe.
 
-Switch the port to 80 and the initial delay to 2 seconds. Then click "Save".
+Set the initial delay to 2 seconds. Then click "Save".
 
 image::common/7_live_http.png[]
 
@@ -67,7 +67,7 @@ image::common/7_failed_http.png[]
 
 Our liveness check is failing. And after it fails for a while, OpenShift says
 "This is broken, I am not going to try and deploy this anymore". If you go back
-to the overview page you can see that the circle has turned orange meaning
+to the overview page you can see that the circle has turned red meaning
 there is an error.
 
 image::common/7_crashed_http.png[]
@@ -76,17 +76,16 @@ NOTE: Can you guess why this isn't working even though NGINX is running. I gave
 you a hint at the end of the last exercise. I will answer this in class.
 
 Let's go ahead and fix the liveness probe. Go back to the "Edit Health Checks"
-page that I showed you above. Change the probe type to "TCP Socket" and then
-make sure the port is 80. Go ahead and click save. You will see that the pod
-gets redeployed and then it comes up blue and stays blue this time.
+page that I showed you above. Change the probe type to "TCP Socket". Go ahead
+and click save. You will see that the pod gets redeployed and then it comes up
+blue and stays blue this time.
 
 === Readiness Check
 
 Now that we have configured a liveness check let's go ahead and set up a
 readiness check. Again navigate back to the health checks configuration page.
 Go ahead and set up a readiness check. With a web application, ready means
-we can serve up the web pages we want, not just connect to a port. Therefore,
-we need to use a check that uses HTTP over port 80.
+we can serve up the web pages we want, not just connect to a port.
 
 image::common/7_ready_http.png[]
 
@@ -101,6 +100,7 @@ to serve content. The same problem from above is the reason we are also failing
 here.
 
 === Conclusion
+
 Given the current configuration of our Docker container image, we could take
 advantage of the liveness check but not the readiness check. With your own
 images you make, knowing these checks are available should help you in crafting
