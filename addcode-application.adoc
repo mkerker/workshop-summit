@@ -11,7 +11,7 @@ Go back to your fork of _v3simple-spatial_ repository on GitHub. In the middle
 of the page you will see a button that may say *SSH* on it. If it does, please
 change that to HTTPS and then click the clipboard to copy the URL in the box.
 
-image::images/common/2_ssh_to_https.png[]
+image::common/2_ssh_to_https.png[]
 
 Our code is ready to use in a build on OpenShift. Let's fire off the build and
 deploy. In your terminal enter the following command:
@@ -65,7 +65,7 @@ click on _spatialapp_.
 
 Your screen should look something like this:
 
-image::images/common/2_create_route.png[]
+image::common/2_create_route.png[]
 
 You can see that we have the 1 pod running our image that was derived from our
 source code and our builder image. There is also other metadata in the box for
@@ -116,7 +116,7 @@ operations from the DB so we will use the slave pods for those operations.
 
 In your browser go to the Browse -> Deployments
 
-image::images/common/4_deployments.png[]
+image::common/4_deployments.png[]
 
 From there click on the deployment for the _pg-slave-rc_ then click on the
 environment tab. From there you should see all the environment variables
@@ -124,7 +124,7 @@ defined on the dc. We are interested in 3 of the variables:
 PG_USER, PG_PASSWORD, and PG_DATABASE. This is where we got the information to
 put in the _new-app_ command.
 
-image::images/common/4_dc_env_variables.png[]
+image::common/4_dc_env_variables.png[]
 
 We also added some Python packages to our requirements.txt so they could get
 pulled in at build time.

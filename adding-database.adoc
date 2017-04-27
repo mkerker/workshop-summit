@@ -3,19 +3,15 @@
 Now it's time to get to the part of the workshop you have all been waiting for
 - getting PostGIS up and running!
 
-=== Making a project
+=== Project cleanup
 
-Let's make a new project for this application:
+We are no longer going to need the NGINX container, so, please clean up your
+project from all we have done so far.
 
 [source, bash]
 ----
-$ oc new-project spatialapp
-
-Now using project "spatialapp" on server "{{CONSOLE_ADDRESS}}"...
+$ oc delete all --all
 ----
-
-That's it - you now a project "spatialapp" and all the subsequent commands will
-affect this project until you swith to another project.
 
 === Preparing your GitHub repository
 

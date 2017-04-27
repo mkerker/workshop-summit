@@ -1,5 +1,7 @@
 == Running a Docker Container Image
 
+=== NGINX IMAGE DOES NOT WORK WITHOUT ROOT
+
 Let's start by just running an NGINX server in OpenShift. By way of doing this
 I will also introduce you to many of the major pieces in an OpenShift project.
 
@@ -16,12 +18,12 @@ The first thing we need to do as a user is create the _project_
 
 [source, bash]
 ----
-> oc new-project webpages
-Now using project "webpages" on server "{{CONSOLE_ADDRESS}}".
+$ oc new-project {{PROJECT_NAME}}
+Now using project {{PROJECT_NAME}} on server "{{CONSOLE_ADDRESS}}".
 ...
 ----
 
-We created a _project_ named webpages and all subsequent commands will be
+We created a _project_ named {{PROJECT_NAME}} and all subsequent commands will be
 executed against this _project_.
 
 There is a special _project_ that admins have access to in the cluster named
@@ -32,7 +34,7 @@ To see all the projects that you have permissions to see go ahead and:
 
 [source, bash]
 ----
-> oc get projects
+$ oc get projects
 ----
 
 === Bringing in Docker Container Image from DockerHub
@@ -41,8 +43,7 @@ Typically you will not bring in images directly from DockerHub because of the
 numerous flaws and vulnerabilities in DockerHub images. One big problem for
 many images on DockerHub is that they run as _root_ user when it is not even
 required. By default, an OpenShift cluster will not let you run images as
-_root_. In the case of the A1VM we turn off this security to allow for ease of
-use.
+_root_.
 
 Let's go ahead and start with an NGINX image put out by the
 https://hub.docker.com/r/centos/nginx-16-centos7/[CentOS group]. Bringing this
@@ -50,7 +51,7 @@ into our OpenShift environment is as simple as
 
 [source, bash]
 ----
-> oc new-app centos/nginx-16-centos7
+$ oc new-app docker.io/mjelen/nginx-16-centos7
 
 --> Found Docker image 32eebae (13 days old) from Docker Hub for "centos/nginx-16-centos7"
 
