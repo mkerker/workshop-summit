@@ -51,22 +51,20 @@ into our OpenShift environment is as simple as
 
 [source, bash]
 ----
-$ oc new-app docker.io/mjelen/nginx-16-centos7
+$ oc new-app docker.io/mjelen/nginx-summit
 
---> Found Docker image 32eebae (13 days old) from Docker Hub for "centos/nginx-16-centos7"
+--> Found Docker image c04a8bc (6 minutes old) from docker.io for "docker.io/mjelen/nginx-summit"
 
-    * An image stream will be created as "nginx-16-centos7:latest" that will track this image
-    * This image will be deployed in deployment config "nginx-16-centos7"
-    * Ports 443/tcp, 80/tcp will be load balanced by service "nginx-16-centos7"
-      * Other containers can access this service through the hostname "nginx-16-centos7"
-    * This image declares volumes and will default to use non-persistent, host-local storage.
-      You can add persistent volumes later by running 'volume dc/nginx-16-centos7 --add ...'
-    * WARNING: Image "centos/nginx-16-centos7" runs as the 'root' user which may not be permitted by your cluster administrator
+    * An image stream will be created as "nginx-summit:latest" that will track this image
+    * This image will be deployed in deployment config "nginx-summit"
+    * Port 8080/tcp will be load balanced by service "nginx-summit"
+      * Other containers can access this service through the hostname "nginx-summit"
+    * WARNING: Image "docker.io/mjelen/nginx-summit" runs as the 'root' user which may not be permitted by your cluster administrator
 
---> Creating resources with label app=nginx-16-centos7 ...
-    imagestream "nginx-16-centos7" created
-    deploymentconfig "nginx-16-centos7" created
-    service "nginx-16-centos7" created
+--> Creating resources ...
+    imagestream "nginx-summit" created
+    deploymentconfig "nginx-summit" created
+    service "nginx-summit" created
 --> Success
     Run 'oc status' to view your app.
 ----
