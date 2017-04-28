@@ -37,7 +37,8 @@ https://github.com/<your_userid>/v3simple-spatial
 
 This repository is set up for several different learning paths and so it has
 several different versions of app.py (the file that runs in a web app for
-Python). We need to rename the current app.py to 1_app.py. It's very easy to
+Python). **If there is already a 1_app.py in the repo, you can skip to the "Generating The Database Pieces".
+If not then we need to rename the current app.py to 1_app.py. It's very easy to
 do from the web interface:
 
 1. click on the app.py file
@@ -68,15 +69,12 @@ creating our master instances:
 
 [source, bash]
 ----
- $ oc new-app -p CCP_IMAGE_TAG=centos7-9.5-1.2.7 -f master.json
- $ oc new-app -p CCP_IMAGE_TAG=centos7-9.5-1.2.7 -f replicas.json
+ $ oc new-app -p CCP_IMAGE_TAG=centos7-9.5-1.2.7 -f https://raw.githubusercontent.com/CrunchyData/crunchy-containers/master/examples/openshift/workshop/master.json
+ $ oc new-app -p CCP_IMAGE_TAG=centos7-9.5-1.2.7 -f https://raw.githubusercontent.com/CrunchyData/crunchy-containers/master/examples/openshift/workshop/replicas.json
 ----
 
-That's it - thanks to the work by Jeff you now have a master-replica PostGIS
-database setup. You can see it in the web overview for the project now. One of
-the cool things besides the replica is Jeff added some other containers to the
-master pod (log collection and metric collection).  I will talk through the
-pieces in class.
+That's it - thanks to the work by Jeff McCormick and OpenShift, you now have a master-replica PostGIS
+database setup. You can see it in the web overview for the project now.
 
 === Loading the Database
 
