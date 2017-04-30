@@ -13,52 +13,6 @@ project from all we have done so far.
 $ oc delete all --all
 ----
 
-=== Preparing your GitHub repository
-
-The only reason we are working with the GitHub repository here and not in the
-code pieces is because we need to get the DDL files to our machine. If we
-weren't using these DDL files you could skip right to the "Generating Database
-Pieces" section.
-
-The source code for this project can be found here:
-
-https://github.com/thesteve0/v3simple-spatial
-
-Now *BEFORE* you go and _git clone_ it down to your machine, you need to fork
-it. See that button up towards the top right that says fork on it
-- [underline]#click it# (you did login with your github account right?)
-
-image::common/2_fork.png[]
-
-Now you should be looking at URL that replaces _thesteve0_ with your github
-userid:
-
-https://github.com/<your_userid>/v3simple-spatial
-
-This repository is set up for several different learning paths and so it has
-several different versions of app.py (the file that runs in a web app for
-Python). **If there is already a 1_app.py in the repo, you can skip to the "Generating The Database Pieces".
-If not then we need to rename the current app.py to 1_app.py. It's very easy to
-do from the web interface:
-
-1. click on the app.py file
-2. click on the pencil icon on the far right of the page
-3. change the name of the file to 1_app.py (a box right above the edit file box)
-4. Scroll down to the *Commit changes* area on the bottom of the page and enter
-a message
-5. Hit the Commit Changes button
-
-There, you just changed the name of the file in your repository.
-
-Now go back to the top level of your repository and follow the same process to
-rename _3_app.py_ to _app.py_.
-
-In the end your repository should look this:
-
-image::common/github_repo.png[]
-
-Go ahead and clone this repository to your machine.
-
 === Generating the Database Pieces
 
 In the terminal, please go to the location on your machine where you cloned the
@@ -78,61 +32,26 @@ database setup. You can see it in the web overview for the project now.
 
 === Loading the Database
 
-Let's go ahead and load up the database in the master with some DDL. In the
-v3simple-spatial repository https://github.com/thesteve0/v3simple-spatial.git
-there is already a SQL file with all our DDL statements. Please clone the
-repository and then change into the root of the repository.
+Let's go ahead and load up the database in the master with some DDL.
+
+Let's go ahead and shell into the _pg_ container running in the _master_ pod. Once we do that we can load the data directly from Github using cURL and the psql command.  The simplest way to do this is at the command line:
+
+
+
+
 
 [source, bash]
 ----
-# we need to get the master pod - it will have a different name on your machine
-$ oc get pods
-
-NAME                 READY     STATUS    RESTARTS   AGE
-master             3/3       Running   0          13m
-replica-dc-1-m46ri   1/1       Running   0          4m
-
-# Look for the container named pg - we will need this below
-$ oc describe pods pgmaster
-
-$ oc rsync ./ddl master:/tmp/. -c pg
-----
-
-You may receive a warning that rsync is not found on your machine but the
-command line tool will fall back to other methods to try and copy the files
-over. We have now put the DDL file in _/tmp/ddl_ in the Master postgis pod.
-
-Let's shell into that same pod and load the data (you can also do this from
-the terminal in the web browser but then you can use copy and paste)
-
-[source, bash]
-----
+#shell into the 'master' pod into the 'pg' container
 $ oc rsh -c pg master
 
-sh-4.2$ psql -l -h 127.0.0.1
-                             List of databases
-   Name    |  Owner   | Encoding  | Collate | Ctype |   Access privileges
------------+----------+-----------+---------+-------+-----------------------
- postgres  | postgres | SQL_ASCII | C       | C     |
- template0 | postgres | SQL_ASCII | C       | C     | =c/postgres          +
-           |          |           |         |       | postgres=CTc/postgres
- template1 | postgres | SQL_ASCII | C       | C     | =c/postgres          +
-           |          |           |         |       | postgres=CTc/postgres
- userdb    | postgres | SQL_ASCII | C       | C     | =Tc/postgres         +
-           |          |           |         |       | postgres=CTc/postgres+
-           |          |           |         |       | testuser=CTc/postgres
-(4 rows)
 
-sh-4.2$ psql -h 127.0.0.1 -f /tmp/ddl/parkcoord.sql  userdb
-CREATE TABLE
-CREATE INDEX
-INSERT 0 1
-INSERT 0 1
-INSERT 0 1
-INSERT 0 1
-INSERT 0 1...
+#now load the data
+$ curl https://raw.githubusercontent.com/thesteve0/v3simple-spatial/master/ddl/parkcoord.sql |psql -U postgres -f -  userdb
 
-sh-4.2$ psql -h 127.0.0.1 userdb
+#now we can load the command line tool to make sure the data is inserted
+$ psql -U postgres userdb
+
 userdb=# select count(*) from parkpoints;
  count
 --
@@ -144,28 +63,24 @@ userdb=# \q
 
 You have now loaded your database with a bunch of points for national parks in
 the US and Canada. The really amazing part comes next. Go ahead and go to the
-overview for the project. Go ahead and click on the circle for the _pg-slave-rc_
-which will bring you to a listing with a single pod. Go ahead and click on that
-link. On the page for the pod, click on the terminal tab:
+overview for the project. Go ahead and click on the circle for the _replica_
+which will bring you to the details page for the pod. Go ahead and click on the terminal tab:
 
 image::common/3_terminal.png[]
-
-On the resulting page you need to click twice on the terminal area to give it
-focus BUT you are now in terminal in the running pod - slick.
 
 In that terminal go ahead and type the following commands:
 
 [source, bash]
 ----
-sh-4.2$ psql -h 127.0.0.1 userdb
-psql (9.5.2)
-Type "help" for help.
+$ psql -U postgres userdb
 
 userdb=# select count(*) from parkpoints;
-count
----
-547
+ count
+--
+   547
 (1 row)
+
+userdb=# \q
 
 ----
 
@@ -176,7 +91,7 @@ that would happen.
 === Time for More Replication Magic
 
 Let's take this to even another level. In the web console, go back to the
-overview again and then click on the little up arrow next to the slave pods:
+overview again and then click on the little up arrow next to the replica pods:
 
 image::common/3_scale.png[]
 

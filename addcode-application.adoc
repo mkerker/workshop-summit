@@ -1,20 +1,49 @@
 == Beginning Your Application
 
-Let's go ahead and start our own project using Python. We chose Python for this
-workshop because we thought it would be easiest for you folks to understand
-regardless of your coding background. The development pattern you are going to
-use today will apply to any language you use for development in OpenShift.
+Let's go ahead and start our own project using Python. We chose Python for this workshop because we thought it would be easiest for you folks to understand regardless of your coding background. The development pattern you are going to use today will apply to any language you use for development in OpenShift.
 
-WARNING: This code is in NO WAY production type code. This code is trying to
-be as simple as possible so you learn the basic patterns. In a real app you
-would not load a DB connection on every request, you would check for exceptions,
- and you would have more optimized queries.
+WARNING: This code is in NO WAY production type code. This code is trying to be as simple as possible so you learn the basic patterns. In a real app you would not load a DB connection on every request, you would check for exceptions, and you would have more optimized queries.
+
+ === Preparing your GitHub repository
+
+ The source code for this project can be found here:
+
+ https://github.com/thesteve0/v3simple-spatial
+
+NOTE: See that button up towards the top right that says fork on it - #click it# (you did login with your github account right?)
+
+ image::common/2_fork.png[]
+
+ Now you should be looking at URL that replaces _thesteve0_ with your github
+ userid:
+
+ https://github.com/<your_userid>/v3simple-spatial
+
+ This repository is set up for several different learning paths and so it has
+ several different versions of app.py (the file that runs in a web app for
+ Python). **If there is already a 1_app.py in the repo, you can skip to the "Adding Code and Doing a Build".**
+ If not then we need to rename the current app.py to 1_app.py. It's very easy to
+ do from the web interface:
+
+ 1. click on the app.py file
+ 2. click on the pencil icon on the far right of the page
+ 3. change the name of the file to 1_app.py (a box right above the edit file box)
+ 4. Scroll down to the *Commit changes* area on the bottom of the page and enter
+ a message
+ 5. Hit the Commit Changes button
+
+ There, you just changed the name of the file in your repository.
+
+ Now go back to the top level of your repository and follow the same process to
+ rename _3_app.py_ to _app.py_.
+
+ In the end your repository should look this:
+
+ image::common/github_repo.png[]
 
 === Adding Code and Doing a Build
 
-Go back to your fork of _v3simple-spatial_ repository on GitHub. In the middle
-of the page you will see a button that may say *SSH* on it. If it does, please
-change that to HTTPS and then click the clipboard to copy the URL in the box.
+Go back to **your** fork of _v3simple-spatial_ repository on GitHub. In the middle of the page you will see a button that may say *SSH* on it. If it does, please change that to HTTPS and then click the clipboard to copy the URL in the box.
 
 image::common/2_ssh_to_https.png[]
 
@@ -26,7 +55,7 @@ repository
 
 [source, bash]
 ----
-$ oc new-app python:3.5~https://github.com/thesteve0/v3simple-spatial.git --env PG_DATABASE=userdb,PG_USER=postgres,PG_PASSWORD=password
+$ oc new-app python:3.5~https://github.com/<your account>/v3simple-spatial.git -e PG_DATABASE=userdb -e PG_USER=postgres -e PG_PASSWORD=password
 
 --> Found image aa7b3ba (8 days old) in image stream "python" in project "openshift" under tag "3.5" for "python:3.5"
 
@@ -54,7 +83,7 @@ $ oc new-app python:3.5~https://github.com/thesteve0/v3simple-spatial.git --env 
 ----
 
 
-What we just did is told OpenShift - take this
+What we just told OpenShift - take this
 https://github.com/openshift/s2i-python[Docker Image] that knows how to build a
 standard Python application layout and combine it with this source code and
 produce a new Docker Image. As part of this process the _new-app_ command knows
@@ -65,10 +94,9 @@ The command goes ahead and makes those objects as well.
 
 At this point we are going to switch back to the web terminal since it is
 easier to look at web sites in a browser. Go ahead and go into your browser and
-go to the projects page. Once you are looking at all your projects go ahead and
-click on _spatialapp_.
+go to the overview page.
 
-Your screen should look something like this:
+Your screen should contain a piece that looks something like this:
 
 image::common/2_create_route.png[]
 
@@ -87,9 +115,7 @@ for our us. You could have also done this at the command line with
 $ oc expose service v3simple-spatial
 ----
 
-Now when you come back to the Overview page there is a URL for the service
-ending in .xip.io, go ahead and click it! You will be greeted by the following
-amazing web content:
+Now when you come back to the Overview page there is a URL for the service, go ahead and click it! You will be greeted by the following amazing web content:
 
 *hello OpenShift Ninja without DB*
 
@@ -101,35 +127,34 @@ yourselves a pat on the back.
 === Reading From the Database
 
 Our python web application to read and write from the PostGIS master and slave services.
-When using OpenShift, the way to handle the connection parameters to the DB are
- handled through environment variables. Rather than hard coding in IP addresses
- or username/passwords we set environment variables that actually point to
- those values.
+
+When using OpenShift, the way to handle the connection parameters to the DB are handled through environment variables. Rather than hard coding in IP addresses or username/passwords we set environment variables that actually point to those values.
 
 Some of these are set by the platform "automagically" - these are usually
 network type variables like hosts to IP and port mappings. The others, that we
 need to handle manually right now are database name, username, and password. We
 did this already when we did the new app command and added
 _--env PG_DATABASE=userdb,PG_USER=postgres,PG_PASSWORD=password_.
-This added env variables to the deployment configuration (dc) for our built python
-Docker image. We add it to the dc so it becomes available to all pods controlled
-by the dc. We will start with the read
-operations from the DB so we will use the slave pods for those operations.
+This added env variables to the deployment configuration (dc) for our built python Docker image. We add it to the _spatial-app_ dc so it becomes available to all pods controlled by the dc.
 
-
-
-You migth be wondering where we found those environment variables. In your
+You might be wondering where we found those environment variables. In your
 browser go to the Browse -> Deployments
 
 image::common/4_deployments.png[]
 
-From there click on the deployment for the _pg-slave-rc_ then click on the
+From there click on the deployment for the _replica_ then click on the
 environment tab. From there you should see all the environment variables
 defined on the dc. We are interested in 3 of the variables:
 PG_USER, PG_PASSWORD, and PG_DATABASE. This is where we got the information to
 put in the _new-app_ command.
 
 image::common/4_dc_env_variables.png[]
+
+To get a listing from the DB click on the route again and then add _db_ to the end so something like:
+
+http://v3simple-spatial-steve.apps.summit.pixy.io/db
+
+and you should see a listing of 10 parks.
 
 
 === Writing to Master
@@ -151,7 +176,8 @@ There are plenty of plugins for Chrome and Firefox to help you do a HTTP Post -
 most of them have the word REST in them. Here is cURL syntax that will exercise
 the end point:
 
-???????????????????? SHOULD WE HAVE THEM DO THIS IN A POD?
+Go back to the terminal for your _replica_ pod and do these commands:
+
 [source, bash]
 ----
 # -d says to do a POST and we leave the payload blank

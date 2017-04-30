@@ -1,19 +1,16 @@
 == Health Checks for Your Containers
 
-Thanks to the health check mechanisms built into Kubernetes, OpenShift just
-inherits a powerful way to make sure you app is running and responding. These
+Thanks to the health check mechanisms built into Kubernetes, OpenShift inherits a powerful way to make sure you app is running and responding. These
 check are over and above a container dying, which just automatically gets
 redeployed by OpenShift. Health checks are for the case where the pod is up
 and running but it is not actually "working" the way you intended.
 
 There are two basic types of health checks in OpenShift
 
-1. A **liveness probes** - is the pod running and responding. If it is not then
+1. A **liveness probe** - is the pod running and responding. If it is not then
 the cluster will kill and respawn the pod
 
-2. A **readiness probe** - is the server in the pod ready to respond to requests.
-If it is not then the cluster will not route requests to it and not continue
-with the deployment
+2. A **readiness probe** - is the server in the pod ready to respond to requests. If it is not then the cluster will not route requests to it and not continue with the deployment
 
 The **readiness probe** is helpful because it can prevent requests being sent to
 the pod until the pod is actually ready to serve content. This can be a problem
@@ -32,7 +29,7 @@ Let's go ahead and define each of these checks for our NGINX pod.
 
 === Liveness Check
 
-If there is already a good check built into your docker container, then
+If there is already a good check built into your Docker container, then
 defining the check can be quite easy. In our example we could consider if we
 get a 200 from the root URL then it is alive.
 
@@ -67,13 +64,12 @@ image::common/7_failed_http.png[]
 
 Our liveness check is failing. And after it fails for a while, OpenShift says
 "This is broken, I am not going to try and deploy this anymore". If you go back
-to the overview page you can see that the circle has turned red meaning
-there is an error.
+to the overview page eventuall you can see that the circle has turned red meaning there is an error.
 
 image::common/7_crashed_http.png[]
 
-NOTE: Can you guess why this isn't working even though NGINX is running. I gave
-you a hint at the end of the last exercise. I will answer this in class.
+NOTE: Can you guess why this isn't working even though NGINX is running. We gave
+you a hint at the end of the last exercise. We will answer this in class.
 
 Let's go ahead and fix the liveness probe. Go back to the "Edit Health Checks"
 page that I showed you above. Change the probe type to "TCP Socket". Go ahead
@@ -98,6 +94,8 @@ If you wait five minutes, the new deployment will go away and we will stay with
 the old pod. OpenShift won't continue the deployment until the new pod is ready
 to serve content. The same problem from above is the reason we are also failing
 here.
+
+To fix this and watch the deployment go through, just add content like you did in the previous exercise. Make sure the to click on the pod that hasn't deployed yet when choosing a pod for the _echo_ command. 
 
 === Conclusion
 
