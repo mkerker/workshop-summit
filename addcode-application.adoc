@@ -197,3 +197,5 @@ show up.
 That's all we are going to do with the code for now. The rest of the workshop
 will be focusing on the advanced features you can get when you combine
 container, Kubernetes, OpenShift, and smart engineering.
+
+<<<

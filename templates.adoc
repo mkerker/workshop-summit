@@ -1,6 +1,6 @@
 == Templates and OpenShift/Kubernetes Declarative Syntax
 
-As I explained before, Kubernetes and OpenShift use a declarative model of the
+As we explained before, Kubernetes and OpenShift use a declarative model of the
 world - you tell the cluster what the truth is and the cluster then goes about
 making it so. OpenShift let's you declare the truth in a file, either YAML or
 JSON syntax, whichever you prefer. In this section we are going to VERY brielfy
@@ -31,7 +31,7 @@ but then links out for further explanation on Kubernetes native objects.
 
 In the OpenShift Origin GitHub repository there is an example called
 https://github.com/openshift/origin/tree/master/examples/hello-openshift["Hello OpenShift"].
-I will walk through this with you in the class.
+We will walk through this with you in the class.
 
 Inside this is probably the simplest JSON you can find, which defines a project:
 
@@ -80,6 +80,27 @@ MongoDB database. It shows how to parameterize everything and wire things
 together. It also shows how to do different build types in OpenShift. If we are
 good on time I will quickly walk us through the
 https://github.com/openshift/origin/blob/master/examples/sample-app/application-template-stibuild.json[S2I build example].
+
+If you have time you can actually just do:
+
+[source, bash]
+----
+
+$ oc new-app -f https://raw.githubusercontent.com/openshift/origin/master/examples/sample-app/application-template-stibuild.json
+----
+
+and that will spin up this template.
+
+You can also do:
+
+[source, bash]
+----
+
+$ oc create -f https://raw.githubusercontent.com/openshift/origin/master/examples/sample-app/application-template-stibuild.json
+----
+
+to make a template that will show up in your "Add to Project" catalog.
+
 
 2. https://github.com/openshift/django-ex[*Django-ex*] - this a quickstart put
 together to help you get started with Django very quickly. Inside this project

@@ -103,3 +103,5 @@ replicated to the new replica.
 
 In the next section we will spin up an application to use the master and the
 replicas.
+
+<<<
