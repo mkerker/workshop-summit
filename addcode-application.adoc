@@ -4,42 +4,42 @@ Let's go ahead and start our own project using Python. We chose Python for this 
 
 WARNING: This code is in NO WAY production type code. This code is trying to be as simple as possible so you learn the basic patterns. In a real app you would not load a DB connection on every request, you would check for exceptions, and you would have more optimized queries.
 
- === Preparing your GitHub repository
+=== Preparing your GitHub repository
 
- The source code for this project can be found here:
+The source code for this project can be found here:
 
- https://github.com/thesteve0/v3simple-spatial
+https://github.com/thesteve0/v3simple-spatial
 
 NOTE: See that button up towards the top right that says fork on it - #click it# (you did login with your github account right?)
 
- image::common/2_fork.png[]
+image::common/2_fork.png[]
 
- Now you should be looking at URL that replaces _thesteve0_ with your github
- userid:
+Now you should be looking at URL that replaces _thesteve0_ with your github
+userid:
 
- https://github.com/<your_userid>/v3simple-spatial
+https://github.com/<your_userid>/v3simple-spatial
 
- This repository is set up for several different learning paths and so it has
- several different versions of app.py (the file that runs in a web app for
- Python). **If there is already a 1_app.py in the repo, you can skip to the "Adding Code and Doing a Build".**
- If not then we need to rename the current app.py to 1_app.py. It's very easy to
- do from the web interface:
+This repository is set up for several different learning paths and so it has
+several different versions of app.py (the file that runs in a web app for
+Python). **If there is already a 1_app.py in the repo, you can skip to the "Adding Code and Doing a Build".**
+If not then we need to rename the current app.py to 1_app.py. It's very easy to
+do from the web interface:
 
- 1. click on the app.py file
- 2. click on the pencil icon on the far right of the page
- 3. change the name of the file to 1_app.py (a box right above the edit file box)
- 4. Scroll down to the *Commit changes* area on the bottom of the page and enter
- a message
- 5. Hit the Commit Changes button
+1. click on the app.py file
+2. click on the pencil icon on the far right of the page
+3. change the name of the file to 1_app.py (a box right above the edit file box)
+4. Scroll down to the *Commit changes* area on the bottom of the page and enter
+a message
+5. Hit the Commit Changes button
 
- There, you just changed the name of the file in your repository.
+There, you just changed the name of the file in your repository.
 
- Now go back to the top level of your repository and follow the same process to
- rename _3_app.py_ to _app.py_.
+Now go back to the top level of your repository and follow the same process to
+rename _3_app.py_ to _app.py_.
 
- In the end your repository should look this:
+In the end your repository should look this:
 
- image::common/github_repo.png[]
+image::common/github_repo.png[]
 
 === Adding Code and Doing a Build
 
@@ -181,10 +181,10 @@ Go back to the terminal for your _replica_ pod and do these commands:
 [source, bash]
 ----
 # -d says to do a POST and we leave the payload blank
-$ curl 'http://v3simple-spatial-spatialapp.{{APPS_ADDRESS}}/db' -d ''
+$ curl -X POST "http://v3simple-spatial-<project name>.{{APPS_ADDRESS}}/db"
 
 # if you want to look at the output in a nicer format you can save it to HTML
-$ curl 'http://v3simple-spatial-spatialapp.{{APPS_ADDRESS}}/db' -d '' > index.html
+$ curl -X POST "http://v3simple-spatial-<project name>.{{APPS_ADDRESS}}/db" > index.html
 ----
 
 If you use a browser plugin the URL stays the same and you just tell the plugin
@@ -197,5 +197,3 @@ show up.
 That's all we are going to do with the code for now. The rest of the workshop
 will be focusing on the advanced features you can get when you combine
 container, Kubernetes, OpenShift, and smart engineering.
-
-<<<
