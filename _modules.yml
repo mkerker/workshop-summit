@@ -5,10 +5,10 @@ config:
       value: <your username>
     - name: CONSOLE_ADDRESS
       desc: HTTP address of the OpenShift console
-      value: https://console.summit.pixy.io:8443
+      value: https://console.class.molw.io:8443
     - name: APPS_ADDRESS
       desc: HTTP address suffix of apps dployed on OpenShift
-      value: apps.summit.pixy.io
+      value: apps.class.molw.io
 
 modules:
   intro-to-os:
@@ -28,4 +28,4 @@ modules:
   templates:
     name: Templates and OpenShift/Kubernetes Declarative Syntax
   otherthings:
-    name: Various Other Notes and Topics 
+    name: Various Other Notes and Topics
