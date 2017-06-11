@@ -1,0 +1,28 @@
+== Other things we can get to if we have time
+
+=== .NET builds
+
+[source, bash]
+----
+oc create -f https://raw.githubusercontent.com/redhat-developer/s2i-dotnetcore/master/dotnet_imagestreams.json -n openshift
+
+oc new-app dotnet:1.0~https://github.com/thesteve0/DayTraderDotNet.git --name winning
+
+----
+
+=== Adding middleware templates
+An admin has to do this one since it is writing to the _openshift_ namespace
+
+[source, bash]
+----
+oc replace -n openshift --force -f https://raw.githubusercontent.com/openshift/openshift-ansible/master/roles/openshift_examples/files/examples/v1.4/xpaas-streams/jboss-image-streams.json
+----
+
+
+* TODO find a middleware or directory structure that shows people what they can do.
+* TODO find a configMap example
+
+[source, bash]
+----
+
+----

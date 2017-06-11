@@ -27,3 +27,5 @@ modules:
     name: Advanced Deployments
   templates:
     name: Templates and OpenShift/Kubernetes Declarative Syntax
+  otherthings:
+    name: Various Other Notes and Topics 

@@ -128,3 +128,7 @@ storage was a host path, this page will go away if we deploy a new image or the
 You may have noticed on this page that there was a warning about
 "No health checks defined". In the next section we will discuss what these
 warnings mean and how to fix it.
+
+Before you go on, please let the instructor know you are done with this section.
+Once enough people are finished we will stop and have a discussion, but feel free
+to keep moving forward. 
