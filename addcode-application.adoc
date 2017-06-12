@@ -19,6 +19,14 @@ userid:
 
 https://github.com/<your_userid>/v3simple-spatial
 
+
+
+If your repository *doesn't* look this:
+
+image::common/github_repo.png[]
+
+OPTIONAL
+
 This repository is set up for several different learning paths and so it has
 several different versions of app.py (the file that runs in a web app for
 Python). **If there is already a 1_app.py in the repo, you can skip to the "Adding Code and Doing a Build".**
@@ -36,10 +44,6 @@ There, you just changed the name of the file in your repository.
 
 Now go back to the top level of your repository and follow the same process to
 rename _3_app.py_ to _app.py_.
-
-In the end your repository should look this:
-
-image::common/github_repo.png[]
 
 === Adding Code and Doing a Build
 
@@ -152,7 +156,7 @@ image::common/4_dc_env_variables.png[]
 
 To get a listing from the DB click on the route again and then add _db_ to the end so something like:
 
-http://v3simple-spatial-steve.apps.summit.pixy.io/db
+http://v3simple-spatial.{{PROJECT_NAME}}.{{APPS_ADDRESS}}/db
 
 and you should see a listing of 10 parks.
 

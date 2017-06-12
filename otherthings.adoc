@@ -58,4 +58,40 @@ In the Web UI it can be found under Resources -> Secrets. If we change a value h
 
 image::common/SecretsInWebUI.png[]
 
-Let's take a look there. 
+Let's take a look there.
+
+
+=== Service accounts
+
+Sometimes you need to programatically talk to the OpenShift API without being authenticated as a user. An example might be having code that dynamically config pieces of the application depending on the status of things in the project.
+
+Here is the doc talking about it:
+
+https://docs.openshift.com/container-platform/3.5/dev_guide/service_accounts.html
+
+To see the service accounts you have access to by default, and the details about the account, use the following commands:
+
+[source, bash]
+----
+$  oc get sa
+NAME       SECRETS   AGE
+builder    2         2h
+default    2         2h
+deployer   2         2h
+
+$ oc get sa default -o yaml
+apiVersion: v1
+imagePullSecrets:
+- name: default-dockercfg-nbrh4
+kind: ServiceAccount
+metadata:
+  creationTimestamp: 2017-06-12T05:20:50Z
+  name: default
+  namespace: developer
+  resourceVersion: "2664"
+  selfLink: /api/v1/namespaces/developer/serviceaccounts/default
+  uid: e5e695ab-4f2e-11e7-9c70-42010a8a0005
+secrets:
+- name: default-dockercfg-nbrh4
+- name: default-token-279tx
+----

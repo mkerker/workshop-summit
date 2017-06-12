@@ -35,7 +35,7 @@ get a 200 from the root URL then it is alive.
 
 Let's try that first.
 
-Go to the web UI, on the left side pick Browse, and then choose Deployments:
+Go to the web UI, on the left side pick Applications, and then choose Deployments:
 
 image::common/7_browse_deployments.png[]
 
@@ -64,7 +64,7 @@ image::common/7_failed_http.png[]
 
 Our liveness check is failing. And after it fails for a while, OpenShift says
 "This is broken, I am not going to try and deploy this anymore". If you go back
-to the overview page eventuall you can see that the circle has turned red meaning there is an error.
+to the overview page eventually you can see that the circle has turned red meaning there is an error.
 
 image::common/7_crashed_http.png[]
 
@@ -95,7 +95,7 @@ the old pod. OpenShift won't continue the deployment until the new pod is ready
 to serve content. The same problem from above is the reason we are also failing
 here.
 
-To fix this and watch the deployment go through, just add content like you did in the previous exercise. Make sure the to click on the pod that hasn't deployed yet when choosing a pod for the _echo_ command. 
+To fix this and watch the deployment go through, just add content like you did in the previous exercise. Make sure the to click on the pod that hasn't deployed yet when choosing a pod for the _echo_ command.
 
 === Conclusion
 

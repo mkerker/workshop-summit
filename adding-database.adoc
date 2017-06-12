@@ -15,11 +15,7 @@ $ oc delete all --all
 
 === Generating the Database Pieces
 
-In the terminal, please go to the location on your machine where you cloned the
-Crunchy Solutions repository. Go to the _\examples\openshift\workshop_
-directory.
-We are going to use a bunch of files in this directory but let's go ahead by
-creating our master instances:
+Spinning up our master and replicas is as easy as loading up some JSON directly from GitHub.
 
 [source, bash]
 ----
@@ -35,10 +31,6 @@ database setup. You can see it in the web overview for the project now.
 Let's go ahead and load up the database in the master with some DDL.
 
 Let's go ahead and shell into the _pg_ container running in the _master_ pod. Once we do that we can load the data directly from Github using cURL and the psql command.  The simplest way to do this is at the command line:
-
-
-
-
 
 [source, bash]
 ----
