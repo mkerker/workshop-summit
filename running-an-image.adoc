@@ -12,12 +12,12 @@ In order to get going we need to create a _project_ to hold all of the pieces
 of our application(s). A _project_ is a materialized _namespace_ in Kubernetes
 that provides permissions and access control between different users' resources.
 
-The first thing we need to do as a user is create the _project_
+The first thing we need to do as a user is create the _project_. Because project names have to be unique in a cluster, please pick a project name that is unique to you. We recommend the first part of your email address or your Kerberos username.
 
 [source, bash]
 ----
-$ oc new-project {{PROJECT_NAME}}
-Now using project {{PROJECT_NAME}} on server "{{CONSOLE_ADDRESS}}".
+$ oc new-project <kerberos username>
+Now using project <kerberos username> on server "{{CONSOLE_ADDRESS}}".
 ...
 ----
 
@@ -125,7 +125,7 @@ browser. But since Docker containers are immutable and the path we mounted for
 storage was a host path, this page will go away if we deploy a new image or the
  image is destroyed.
 
-You may have noticed on this page that there was a warning about
+You may have noticed the _overview_ page that there was a warning about
 "No health checks defined". In the next section we will discuss what these
 warnings mean and how to fix it.
 

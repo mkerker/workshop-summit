@@ -18,9 +18,14 @@ with servers that take longer to become ready to serve content, such as some
 of the larger JavaEE servers or with a large database cluster.
 
 These checks can use HTTP responses, socket connections, or executing a command
-in the running container.  With the HTTP check, the cluster expects a response
-code of from 200 up to 399 for a live or ready pod. For a socket connection, the
-cluster just needs to be able to make a connection on the given port.
+in the running container.
+
+With the HTTP GET check, the cluster expects a HTTP response
+code from 200 up to 399 for a live or ready pod. For a socket connection, the cluster just needs to be able to make a connection on the given port.
+
+With socket connection it just needs to connect to the socket it to be considered alive or ready.
+
+For a command it expects the command to return a 0, otherwise the pod is considered dead or not ready. 
 
 You can read more about these checks in the
 https://docs.openshift.com/enterprise/3.0/dev_guide/application_health.html[OpenShift documentation].
