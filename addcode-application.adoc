@@ -188,7 +188,7 @@ Go back to the terminal for your _replica_ pod and do these commands:
 $ curl -X POST "http://v3simple-spatial-<project name>.{{APPS_ADDRESS}}/db"
 
 # if you want to look at the output in a nicer format you can save it to HTML
-$ curl -X POST "http://v3simple-spatial-<project name>.{{APPS_ADDRESS}}/db" > index.html
+$ curl -X POST "http://v3simple-spatial-<project name>.{{APPS_ADDRESS}}/db" > /tmp/index.html
 ----
 
 If you use a browser plugin the URL stays the same and you just tell the plugin
