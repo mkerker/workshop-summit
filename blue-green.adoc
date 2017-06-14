@@ -79,7 +79,7 @@ and you should see your new web page.
 
 [source, bash]
 ----
-$ curl "http://v3simple-spatial-<project name>.apps.summit.pixy.io"
+$ curl "http://v3simple-spatial-<project name>.{{APPS_ADDRESS}}"
 ----
 
 In class we can talk about how this would be A/B versus Blue/Green.
