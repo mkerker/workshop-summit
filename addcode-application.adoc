@@ -142,7 +142,7 @@ _--env PG_DATABASE=userdb,PG_USER=postgres,PG_PASSWORD=password_.
 This added env variables to the deployment configuration (dc) for our built python Docker image. We add it to the _spatial-app_ dc so it becomes available to all pods controlled by the dc.
 
 You might be wondering where we found those environment variables. In your
-browser go to the Browse -> Deployments
+browser go to the Application -> Deployments
 
 image::common/4_deployments.png[]
 
