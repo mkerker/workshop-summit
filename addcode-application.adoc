@@ -141,19 +141,6 @@ did this already when we did the new app command and added
 _--env PG_DATABASE=userdb,PG_USER=postgres,PG_PASSWORD=password_.
 This added env variables to the deployment configuration (dc) for our built python Docker image. We add it to the _spatial-app_ dc so it becomes available to all pods controlled by the dc.
 
-You might be wondering where we found those environment variables. In your
-browser go to the Application -> Deployments
-
-image::common/4_deployments.png[]
-
-From there click on the deployment for the _replica_ then click on the
-environment tab. From there you should see all the environment variables
-defined on the dc. We are interested in 3 of the variables:
-PG_USER, PG_PASSWORD, and PG_DATABASE. This is where we got the information to
-put in the _new-app_ command.
-
-image::common/4_dc_env_variables.png[]
-
 To get a listing from the DB click on the route again and then add _db_ to the end so something like:
 
 http://v3simple-spatial-{{PROJECT_NAME}}.{{APPS_ADDRESS}}/db
