@@ -156,7 +156,7 @@ image::common/4_dc_env_variables.png[]
 
 To get a listing from the DB click on the route again and then add _db_ to the end so something like:
 
-http://v3simple-spatial.{{PROJECT_NAME}}.{{APPS_ADDRESS}}/db
+http://v3simple-spatial-{{PROJECT_NAME}}.{{APPS_ADDRESS}}/db
 
 and you should see a listing of 10 parks.
 

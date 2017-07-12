@@ -71,7 +71,7 @@ $ oc new-app docker.io/mjelen/nginx-summit
 The command `oc new-app` actually does a lot of things for you. The idea behind
 new-app is to "do the right thing" when given a non-OpenShift artifact, we like
 to call it `oc translate`. So in this case we are telling OpenShift, "here is a
-Docker image, do you best to make all the pieces needed to make this run as a
+Docker image, do your best to make all the pieces needed to make this run as a
 user would expect in OpenShift.
 
 If you go back to the Web UI and look in the webpages project you should see
@@ -91,7 +91,7 @@ outside world? This is where the OpenShift Route can be used to expose our
 service with a URL.
 
 In the Web UI, there is a link in the top right of NGINX SUMMIT titled
-"Create Route". Go ahead and click it and accepts all the defaults.
+"Create Route". Go ahead and click it and accept all the defaults.
 
 When you get back to the overview screen you will now have a URL up in the top
 of the box, go ahead and click (but be ready for sadness).
@@ -117,7 +117,7 @@ the path):
 
 [source, bash]
 ----
-echo  "hello world" > html/index.html
+echo "hello world" > html/index.html
 ----
 
 Now if you go back and reload the URL you will see "hello world" in your

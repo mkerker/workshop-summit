@@ -1,6 +1,6 @@
 == Health Checks for Your Containers
 
-Thanks to the health check mechanisms built into Kubernetes, OpenShift inherits a powerful way to make sure you app is running and responding. These
+Thanks to the health check mechanisms built into Kubernetes, OpenShift inherits a powerful way to make sure your app is running and responding. These
 check are over and above a container dying, which just automatically gets
 redeployed by OpenShift. Health checks are for the case where the pod is up
 and running but it is not actually "working" the way you intended.
@@ -25,7 +25,7 @@ code from 200 up to 399 for a live or ready pod. For a socket connection, the cl
 
 With socket connection it just needs to connect to the socket it to be considered alive or ready.
 
-For a command it expects the command to return a 0, otherwise the pod is considered dead or not ready. 
+For a command it expects the command to return a 0, otherwise the pod is considered dead or not ready.
 
 You can read more about these checks in the
 https://docs.openshift.com/enterprise/3.0/dev_guide/application_health.html[OpenShift documentation].
@@ -100,7 +100,7 @@ the old pod. OpenShift won't continue the deployment until the new pod is ready
 to serve content. The same problem from above is the reason we are also failing
 here.
 
-To fix this and watch the deployment go through, just add content like you did in the previous exercise. Make sure the to click on the pod that hasn't deployed yet when choosing a pod for the _echo_ command.
+To fix this and watch the deployment go through, just add content like you did in the previous exercise. Make sure to click on the pod that hasn't deployed yet when choosing a pod for the _echo_ command.
 
 === Conclusion
 

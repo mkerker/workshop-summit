@@ -1,13 +1,13 @@
 == Introduction to the OpenShift Environment
 
 Before we get started, we have already installed the OpenShift client tools on
-the VM for today's class. 
+the VM for today's class.
 
 If not you can get them here:
 
 https://github.com/openshift/origin/releases/tag/v1.5.1
 
-Get the client file, unpackage, and put the _oc_ binary somewhere on your filesystem so it is in your path. 
+Get the client file, unpackage, and put the _oc_ binary somewhere on your filesystem so it is in your path.
 
 We have also spun up a cluster "in the cloud" for you to work on today. You will be interacting as developers, not system administrators.
 
@@ -48,9 +48,6 @@ this. Once you accept the certs, you should see the login screen. Again use the 
 password from above. When done you should see something that looks like this:
 
 image::common/1_login.png[]
-
-Now go ahead and login as the account we will use for most of the remaining
-exercises.
 
 And with that we are ready to get down to business. Let's start by just using
 a plain Docker container image from Docker hub!
