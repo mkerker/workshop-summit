@@ -63,8 +63,7 @@ image::common/blue_green_2.png[]
 
 If you look down the screen a bit you will see a check box that says _add
 another service_, go ahead and select it, and then from the dropdown pick
-the green service (should be picked automatically). Make sure the percentage
-sliders are set to equal numbers as in the screen below.
+the green service (should be picked automatically). 
 
 Now click the _save_ button on the bottom of the page.
 
